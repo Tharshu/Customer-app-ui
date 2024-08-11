@@ -1,0 +1,41 @@
+footer {
+  background-color: #2f3c87; /* Primary dark blue color */
+}
+
+footer a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  text-decoration: none;
+}
+
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-outline-light {
+  border-color: white;
+}
+
+.btn-outline-light:hover {
+  color: #2f3c87;
+  background-color: white;
+}
+
+@media (max-width: 576px) {
+  nav {
+    flex-direction: column;
+  }
+
+  nav a {
+    margin-bottom: 10px;
+  }
+}

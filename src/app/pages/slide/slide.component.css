@@ -1,0 +1,4 @@
+.carousel-inner img {
+  object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+  height: auto; /* Adjusts the height based on the container width */
+}
