@@ -22,22 +22,24 @@
         </div>
       </div>
     </div> -->
-
+    @for (product of products; track $index) {
     <div class="col">
       <div class="card">
         <div class="position-relative">
           <span class="badge bg-danger position-absolute ms-2 mt-2"
-            >New !</span
+            >{{product.collectionId.title}}</span
           >
           <img
             src="https://i.ibb.co/Gx0TdXY/2-815x1052.jpg"
             class="card-img-top"
-            alt="Donna gold frame glasses"
+            alt="${{product?.title}}"
           />
         </div>
         <div class="card-body">
-          <h5 class="card-title">Donna gold frame glasses</h5>
-          <p class="card-text"><del>$48.00</del> <strong>$40.00</strong></p>
+          <h5 class="card-title">{{product?.title}}</h5>
+          <p class="card-text"><del>$48.00</del>
+            <!-- <strong>{{ product?.priceToDisplay | currency }}</strong> -->
+          </p>
           <div class="d-flex justify-content-between align-items-center">
             <span class="btn"><i class="fa fa-cart-plus"></i></span>
             <span class="btn"
@@ -47,7 +49,7 @@
         </div>
       </div>
     </div>
-
+  }
     <div class="col">
       <div class="card">
         <div class="position-relative">
@@ -147,7 +149,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col">
       <div class="card">
         <div class="position-relative">
