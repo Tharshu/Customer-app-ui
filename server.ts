@@ -4,6 +4,10 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
+import { createProxyMiddleware } from 'http-proxy-middleware'; // Add this line
+import { environment } from './src/environments/environment.dev';
+
+const SPRING_BOOT_API_URL = environment.apiEndpoint; // Your Spring Boot API URL
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -17,12 +21,21 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
+  // Proxy API requests to Spring Boot
+  server.use(
+    '/api',
+    createProxyMiddleware({ target: SPRING_BOOT_API_URL, changeOrigin: true })
+  );
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('*.*', express.static(browserDistFolder, {
-    maxAge: '1y'
-  }));
+  server.get(
+    '*.*',
+    express.static(browserDistFolder, {
+      maxAge: '1y',
+    })
+  );
 
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
